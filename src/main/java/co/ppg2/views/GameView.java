@@ -1,19 +1,15 @@
-package co.ppg2;
+package co.ppg2.views;
 
 
 
 
+import co.ppg2.controllers.GameController;
+import co.ppg2.controllers.PlayerDataController;
+import co.ppg2.model.Player;
 import javafx.scene.Scene;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
-
-
-
-
-import java.util.ArrayList;
-
-
 
 
 public class GameView {
@@ -84,7 +80,7 @@ public class GameView {
 
     public void handleTie() {
         updateLabel("It is a tie!");
-        LeaderboardPopup.showLeaderboard(PlayerDataManager.loadPlayers());
+        LeaderboardPopup.showLeaderboard(PlayerDataController.loadPlayers());
     }
 
 

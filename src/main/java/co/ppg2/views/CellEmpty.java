@@ -1,15 +1,15 @@
-package co.ppg2;
+package co.ppg2.views;
 
 
 
 
+import co.ppg2.controllers.GameController;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.layout.Border;
 import javafx.scene.layout.BorderStroke;
 import javafx.scene.layout.BorderStrokeStyle;
 import javafx.scene.layout.CornerRadii;
-import javafx.geometry.Insets;
 import javafx.scene.layout.BorderWidths;
 
 

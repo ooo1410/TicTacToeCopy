@@ -1,8 +1,9 @@
-package co.ppg2;
+package co.ppg2.views;
 
 
 
 
+import co.ppg2.model.Player;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.layout.*;

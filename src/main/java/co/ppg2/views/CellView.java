@@ -1,8 +1,9 @@
-package co.ppg2;
+package co.ppg2.views;
 
 
 
 
+import co.ppg2.controllers.GameController;
 import javafx.scene.control.Button;
 import javafx.scene.layout.StackPane;
 

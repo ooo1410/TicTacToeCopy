@@ -1,4 +1,4 @@
-package co.ppg2;
+package co.ppg2.views;
 
 
 

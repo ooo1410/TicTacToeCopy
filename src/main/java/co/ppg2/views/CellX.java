@@ -1,4 +1,4 @@
-package co.ppg2;
+package co.ppg2.views;
 
 
 
@@ -7,7 +7,6 @@ package co.ppg2;
 
 
 
-import javafx.scene.layout.Pane;
 import javafx.scene.shape.Line;
 
 

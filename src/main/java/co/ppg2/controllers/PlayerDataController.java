@@ -1,7 +1,9 @@
-package co.ppg2;
+package co.ppg2.controllers;
 
 
 
+
+import co.ppg2.model.Player;
 
 import java.io.*;
 import java.util.ArrayList;
@@ -11,7 +13,7 @@ import java.util.Optional;
 
 
 
-public class PlayerDataManager {
+public class PlayerDataController {
 
 
 

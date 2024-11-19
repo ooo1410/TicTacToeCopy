@@ -8,4 +8,8 @@ module co.ppg2 {
     requires java.desktop;
 
     exports co.ppg2;
+    exports co.ppg2.views;
+    exports co.ppg2.controllers;
+    exports co.ppg2.model;
+    exports co.ppg2.services;
 }

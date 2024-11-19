@@ -3,6 +3,11 @@ package co.ppg2;
 
 
 
+import co.ppg2.controllers.GameController;
+import co.ppg2.controllers.PlayerDataController;
+import co.ppg2.model.Player;
+import co.ppg2.views.GameView;
+import co.ppg2.views.PlayerPopup;
 import javafx.application.Application;
 import javafx.stage.Stage;
 
@@ -16,12 +21,12 @@ import java.util.ArrayList;
 
 public class Main extends Application {
     private static ArrayList<Player> players;
-
-
-
+    // TODO: create public static variables for the controllers, views, and players, etc and instantiate in main()
+    public static GameController gameController;
+    public static GameView gameView;
 
     public static void main(String[] args) {
-        players = PlayerDataManager.loadPlayers(); // Load players on start
+        players = PlayerDataController.loadPlayers(); // Load players on start
         launch(args);
     }
 
@@ -45,8 +50,8 @@ public class Main extends Application {
 
 
         // Initialize GameController and GameView
-        GameController gameController = new GameController(playerX, playerO);
-        GameView gameView = new GameView(gameController, primaryStage);
+        gameController = new GameController(playerX, playerO);
+        gameView = new GameView(gameController, primaryStage);
         gameController.setGameView(gameView);
 
 
@@ -67,7 +72,7 @@ public class Main extends Application {
         }
         Player newPlayer = new Player(username);
         players.add(newPlayer);
-        PlayerDataManager.savePlayers(players);
+        PlayerDataController.savePlayers(players);
         return newPlayer;
     }
 }

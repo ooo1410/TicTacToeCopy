@@ -1,7 +1,13 @@
-package co.ppg2;
+package co.ppg2.controllers;
 
 
 
+
+import co.ppg2.services.GameTimer;
+import co.ppg2.model.Player;
+import co.ppg2.views.CellBase;
+import co.ppg2.views.GameView;
+import co.ppg2.views.LeaderboardPopup;
 
 import java.util.ArrayList;
 
@@ -23,7 +29,7 @@ public class GameController {
     public GameController(Player playerX, Player playerO) {
         this.playerX = playerX;
         this.playerO = playerO;
-        this.players = PlayerDataManager.loadPlayers(); // Load existing players
+        this.players = PlayerDataController.loadPlayers(); // Load existing players
     }
 
 
@@ -151,7 +157,7 @@ public class GameController {
 
 
 
-        PlayerDataManager.savePlayers(players);
+        PlayerDataController.savePlayers(players);
         LeaderboardPopup.showLeaderboard(players);
     }
 }

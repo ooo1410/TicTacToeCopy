@@ -1,8 +1,5 @@
 package co.ppg2.views;
 
-
-
-
 import co.ppg2.controllers.GameController;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
@@ -13,19 +10,12 @@ import javafx.scene.layout.CornerRadii;
 import javafx.scene.layout.BorderWidths;
 
 
-
-
 public class CellEmpty extends CellBase {
-
-
-
-
     private static final int CELL_SIZE = 100;
-    private int row, col;
-    private GameController gameController;
-    private GameView gameView;
-
-
+    private final int row;
+    private final int col;
+    private final GameController gameController;
+    private final GameView gameView;
 
 
     public CellEmpty(GameController gameController, GameView gameView, int row, int col) {
@@ -35,13 +25,9 @@ public class CellEmpty extends CellBase {
         this.col = col;
 
 
-
-
         Rectangle rect = new Rectangle(CELL_SIZE, CELL_SIZE);
         rect.setFill(Color.LIGHTGRAY);
         this.getChildren().add(rect);
-
-
 
 
         this.setBorder(new Border(
@@ -54,39 +40,25 @@ public class CellEmpty extends CellBase {
         ));
 
 
-
-
         this.setOnMouseClicked(e -> handleMouseClick());
     }
-
-
 
 
     @Override
     public void setToken(char token) {
         this.token = token;
         this.getChildren().clear();
-
-
-
-
         if (token == 'X') {
             this.getChildren().add(new CellX());
         } else if (token == 'O') {
             this.getChildren().add(new CellO());
         }
     }
-
-
-
-
     private void handleMouseClick() {
         if (token == ' ') {
             char currentPlayerToken = gameController.getWhoseTurn();
             gameController.setCell(row, col, this); // Update game state
             setToken(currentPlayerToken);  // Update display
-
-
 
 
             // Check for win or tie condition
@@ -101,3 +73,4 @@ public class CellEmpty extends CellBase {
         }
     }
 }
+

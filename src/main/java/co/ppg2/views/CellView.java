@@ -1,33 +1,20 @@
 package co.ppg2.views;
 
 
-
-
 import co.ppg2.controllers.GameController;
 import javafx.scene.control.Button;
 import javafx.scene.layout.StackPane;
 
 
-
-
 public class CellView extends StackPane {
-
-
-
-
-    private Button button;
-    private int row, col;
-    private GameController gameController;
-
-
-
-
+    private final Button button;
+    private final int row;
+    private final int col;
+    private final GameController gameController;
     public CellView(int row, int col, GameController gameController) {
         this.row = row;
         this.col = col;
         this.gameController = gameController;
-
-
 
 
         // Initialize the button and add it to the cell view
@@ -36,21 +23,15 @@ public class CellView extends StackPane {
         getChildren().add(button);
 
 
-
-
         // Set action for button click
         button.setOnAction(e -> handleClick());
     }
-
-
 
 
     private void handleClick() {
         // Only proceed if the cell is empty
         if (gameController.getCell(row, col) == null || gameController.getCell(row, col).getToken() == ' ') {
             char currentPlayerToken = gameController.getWhoseTurn();
-
-
 
 
             // Set the token in GameController and update button text
@@ -61,8 +42,6 @@ public class CellView extends StackPane {
                     button.setText(String.valueOf(currentPlayerToken));
                 }
             });
-
-
 
 
             // Check if there's a winner or if the board is full
@@ -77,3 +56,4 @@ public class CellView extends StackPane {
         }
     }
 }
+

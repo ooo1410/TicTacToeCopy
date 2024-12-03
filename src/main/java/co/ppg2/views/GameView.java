@@ -1,8 +1,6 @@
 package co.ppg2.views;
 
 
-
-
 import co.ppg2.controllers.GameController;
 import co.ppg2.controllers.PlayerDataController;
 import co.ppg2.model.Player;
@@ -13,30 +11,16 @@ import javafx.stage.Stage;
 
 
 public class GameView {
-
-
-
-
-    private GameController gameController;
-    private Stage primaryStage;
+    private final GameController gameController;
+    private final Stage primaryStage;
     private LabelInstructions labelInstructions;
-
-
-
-
     public GameView(GameController gameController, Stage primaryStage) {
         this.gameController = gameController;
         this.primaryStage = primaryStage;
     }
-
-
-
-
     public void launchGame() {
         GridPane gridPane = new GridPane();
         gridPane.setGridLinesVisible(true);
-
-
 
 
         for (int i = 0; i < 3; i++) {
@@ -48,18 +32,12 @@ public class GameView {
         }
 
 
-
-
         labelInstructions = new LabelInstructions(gameController.getCurrentPlayer().getUsername() + "'s turn");
-
-
 
 
         BorderPane borderPane = new BorderPane();
         borderPane.setCenter(gridPane);
         borderPane.setBottom(labelInstructions);
-
-
 
 
         Scene scene = new Scene(borderPane, 450, 170);
@@ -69,13 +47,9 @@ public class GameView {
     }
 
 
-
-
     public void updateLabel(String text) {
         labelInstructions.setText(text);
     }
-
-
 
 
     public void handleTie() {
@@ -84,15 +58,13 @@ public class GameView {
     }
 
 
-
-
     public void handleGameOver(char token) {
         Player winner = gameController.getWinner(token);
         updateLabel(winner.getUsername() + " won!");
 
 
-
-
         gameController.updateLeaderboard(token);
     }
 }
+
+

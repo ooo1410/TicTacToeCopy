@@ -1,29 +1,21 @@
 package co.ppg2.controllers;
 
-
-
-
 import co.ppg2.services.GameTimer;
 import co.ppg2.model.Player;
 import co.ppg2.views.CellBase;
 import co.ppg2.views.GameView;
 import co.ppg2.views.LeaderboardPopup;
-
 import java.util.ArrayList;
-
-
 
 
 public class GameController {
     private char whoseTurn = 'X';
-    private CellBase[][] cells = new CellBase[3][3];
-    private Player playerX;
-    private Player playerO;
+    private final CellBase[][] cells = new CellBase[3][3];
+    private final Player playerX;
+    private final Player playerO;
     private GameTimer gameTimer;
     private GameView gameView;
-    private ArrayList<Player> players;
-
-
+    private final ArrayList<Player> players;
 
 
     public GameController(Player playerX, Player playerO) {
@@ -33,13 +25,9 @@ public class GameController {
     }
 
 
-
-
     public char getWhoseTurn() {
         return whoseTurn;
     }
-
-
 
 
     public Player getCurrentPlayer() {
@@ -47,17 +35,13 @@ public class GameController {
     }
 
 
-
-
     public void switchTurn() {
-        whoseTurn = (whoseTurn == 'X') ? 'O' : 'X';
         if (gameTimer != null) {
-            gameTimer.cancelTimer();
-            gameTimer.startTimer();
+            gameTimer.cancelTimer(); // Stop the timer for the current player
+            whoseTurn = (whoseTurn == 'X') ? 'O' : 'X';
+            gameTimer.startTimer(getCurrentPlayer().getUsername()); // Start the timer for the next player
         }
     }
-
-
 
 
     public boolean isFull() {
@@ -88,10 +72,7 @@ public class GameController {
         if (cells[0][0].getToken() == token && cells[1][1].getToken() == token && cells[2][2].getToken() == token) {
             return true;
         }
-        if (cells[0][2].getToken() == token && cells[1][1].getToken() == token && cells[2][0].getToken() == token) {
-            return true;
-        }
-        return false;
+        return cells[0][2].getToken() == token && cells[1][1].getToken() == token && cells[2][0].getToken() == token;
     }
 
 
@@ -158,6 +139,30 @@ public class GameController {
 
 
         PlayerDataController.savePlayers(players);
+
+
+
+
+        // Show leaderboard with average time per move
+        StringBuilder leaderboardDetails = new StringBuilder();
+        for (Player player : players) {
+            double avgTime = gameTimer.getAverageTimePerMove(player.getUsername());
+            leaderboardDetails.append(String.format("%s - Wins: %d, Losses: %d, Avg Time: %.2f seconds\n",
+                    player.getUsername(), player.getWins(), player.getLosses(), avgTime));
+        }
+
+
+
+
         LeaderboardPopup.showLeaderboard(players);
     }
 }
+
+
+
+
+
+
+
+
+

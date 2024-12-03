@@ -1,36 +1,25 @@
 package co.ppg2;
 
-
-
-
 import co.ppg2.controllers.GameController;
 import co.ppg2.controllers.PlayerDataController;
 import co.ppg2.model.Player;
+import co.ppg2.services.GameTimer;
 import co.ppg2.views.GameView;
 import co.ppg2.views.PlayerPopup;
 import javafx.application.Application;
 import javafx.stage.Stage;
-
-
-
-
 import java.util.ArrayList;
-
-
-
 
 public class Main extends Application {
     private static ArrayList<Player> players;
-    // TODO: create public static variables for the controllers, views, and players, etc and instantiate in main()
     public static GameController gameController;
     public static GameView gameView;
+    public static GameTimer gameTimer; // Shared GameTimer instance
 
     public static void main(String[] args) {
         players = PlayerDataController.loadPlayers(); // Load players on start
         launch(args);
     }
-
-
 
 
     @Override
@@ -49,8 +38,15 @@ public class Main extends Application {
 
 
 
+        // Initialize shared GameTimer
+        gameTimer = new GameTimer();
+
+
+
+
         // Initialize GameController and GameView
         gameController = new GameController(playerX, playerO);
+        gameController.setGameTimer(gameTimer); // Pass GameTimer to GameController
         gameView = new GameView(gameController, primaryStage);
         gameController.setGameView(gameView);
 
@@ -59,6 +55,12 @@ public class Main extends Application {
 
         // Launch the game view
         gameView.launchGame();
+
+
+
+
+        // Start the timer for Player X
+        gameTimer.startTimer(playerX.getUsername());
     }
 
 
@@ -76,3 +78,6 @@ public class Main extends Application {
         return newPlayer;
     }
 }
+
+
+

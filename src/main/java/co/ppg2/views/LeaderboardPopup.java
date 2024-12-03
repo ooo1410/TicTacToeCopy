@@ -1,25 +1,15 @@
 package co.ppg2.views;
 
-
-
-
 import co.ppg2.model.Player;
+import co.ppg2.Main;
 import javafx.scene.Scene;
-import javafx.scene.control.*;
-import javafx.scene.layout.*;
+import javafx.scene.control.Label;
+import javafx.scene.control.ListView;
+import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
-
-
-
-
 import java.util.List;
 
-
 public class LeaderboardPopup {
-
-
-
-
     public static void showLeaderboard(List<Player> players) {
         Stage popupStage = new Stage();
         VBox vbox = new VBox();
@@ -36,7 +26,10 @@ public class LeaderboardPopup {
         players.stream()
                 .sorted((p1, p2) -> Integer.compare(p2.getWins(), p1.getWins()))
                 .limit(10)
-                .forEach(player -> listView.getItems().add(player.toString()));
+                .forEach(player -> {
+                    double avgTime = Main.gameTimer.getAverageTimePerMove(player.getUsername()); // Get average time
+                    listView.getItems().add(player + String.format(", Avg Time: %.2f seconds", avgTime));
+                });
 
 
 
@@ -48,3 +41,6 @@ public class LeaderboardPopup {
         popupStage.showAndWait();
     }
 }
+
+
+
